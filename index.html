@@ -1,0 +1,816 @@
+<!DOCTYPE html>
+<html lang="az">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Şəfa Market — Təzə və Keyfiyyətli Məhsullar</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+  :root {
+    --green: #1a5c3a;
+    --green-light: #2d8a58;
+    --green-pale: #e8f5ee;
+    --gold: #c9973a;
+    --gold-light: #f5e4c0;
+    --cream: #fdf8f0;
+    --dark: #1a1a1a;
+    --gray: #6b7280;
+    --white: #ffffff;
+    --shadow: 0 8px 32px rgba(26,92,58,0.12);
+    --radius: 16px;
+  }
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { font-family: 'DM Sans', sans-serif; background: var(--cream); color: var(--dark); overflow-x: hidden; }
+
+  /* HEADER */
+  header { position: sticky; top: 0; z-index: 100; background: var(--white); border-bottom: 1px solid #e8e8e8; box-shadow: 0 2px 20px rgba(0,0,0,0.06); }
+  .header-inner { max-width: 1200px; margin: 0 auto; padding: 16px 24px; display: flex; align-items: center; justify-content: space-between; gap: 24px; }
+  .logo { display: flex; align-items: center; gap: 12px; text-decoration: none; }
+  .logo-icon { width: 48px; height: 48px; background: var(--green); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 22px; }
+  .logo-text .brand { font-family: 'Playfair Display', serif; font-size: 22px; font-weight: 700; color: var(--green); line-height: 1; }
+  .logo-text .tagline { font-size: 11px; color: var(--gray); letter-spacing: 0.08em; text-transform: uppercase; font-weight: 500; }
+  nav { display: flex; align-items: center; gap: 32px; }
+  nav a { font-size: 14px; font-weight: 500; color: var(--dark); text-decoration: none; transition: color 0.2s; }
+  nav a:hover { color: var(--green); }
+  .header-actions { display: flex; align-items: center; gap: 12px; }
+
+  /* HERO */
+  .hero { background: linear-gradient(135deg, var(--green) 0%, #0d3d24 100%); color: var(--white); padding: 80px 24px; position: relative; overflow: hidden; }
+  .hero::before { content: ''; position: absolute; inset: 0; background-image: radial-gradient(circle at 70% 50%, rgba(201,151,58,0.15) 0%, transparent 60%), radial-gradient(circle at 20% 80%, rgba(255,255,255,0.05) 0%, transparent 40%); }
+  .hero-inner { max-width: 1200px; margin: 0 auto; position: relative; display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+  .hero-badge { display: inline-flex; align-items: center; gap: 8px; background: rgba(201,151,58,0.2); border: 1px solid rgba(201,151,58,0.4); color: #f5cc7f; padding: 6px 14px; border-radius: 20px; font-size: 12px; font-weight: 600; letter-spacing: 0.06em; margin-bottom: 20px; }
+  .hero h1 { font-family: 'Playfair Display', serif; font-size: 54px; font-weight: 900; line-height: 1.1; margin-bottom: 20px; }
+  .hero h1 span { color: var(--gold); }
+  .hero p { font-size: 17px; opacity: 0.85; line-height: 1.7; margin-bottom: 32px; max-width: 460px; }
+  .hero-btns { display: flex; gap: 12px; flex-wrap: wrap; }
+  .btn-primary { background: var(--gold); color: var(--dark); padding: 14px 28px; border-radius: 12px; border: none; font-size: 15px; font-weight: 700; cursor: pointer; transition: transform 0.2s, box-shadow 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  .btn-primary:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(201,151,58,0.4); }
+  .btn-outline { background: transparent; color: var(--white); padding: 14px 28px; border-radius: 12px; border: 1.5px solid rgba(255,255,255,0.4); font-size: 15px; font-weight: 600; cursor: pointer; transition: background 0.2s; font-family: 'DM Sans', sans-serif; text-decoration: none; display: inline-block; }
+  .btn-outline:hover { background: rgba(255,255,255,0.1); }
+  .hero-visual { display: flex; justify-content: center; }
+  .hero-card { background: rgba(255,255,255,0.1); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.2); border-radius: 24px; padding: 32px; width: 100%; max-width: 340px; }
+  .hero-card h3 { font-size: 14px; font-weight: 600; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .stat-row { display: flex; flex-direction: column; gap: 12px; }
+  .stat-item { background: rgba(255,255,255,0.08); border-radius: 12px; padding: 14px 18px; display: flex; align-items: center; justify-content: space-between; }
+  .stat-label { font-size: 13px; opacity: 0.75; }
+  .stat-val { font-size: 20px; font-weight: 700; color: var(--gold); }
+
+  /* SECTIONS */
+  .section { padding: 80px 24px; }
+  .section-inner { max-width: 1200px; margin: 0 auto; }
+  .section-header { text-align: center; margin-bottom: 48px; }
+  .section-tag { display: inline-block; background: var(--green-pale); color: var(--green); padding: 5px 14px; border-radius: 20px; font-size: 12px; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; margin-bottom: 14px; }
+  .section-header h2 { font-family: 'Playfair Display', serif; font-size: 40px; font-weight: 800; line-height: 1.2; }
+  .section-header p { color: var(--gray); font-size: 17px; margin-top: 12px; }
+
+  /* FEATURES */
+  .features-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 24px; }
+  .feature-card { background: var(--white); border: 1px solid #ebebeb; border-radius: var(--radius); padding: 32px 28px; transition: transform 0.2s, box-shadow 0.2s; }
+  .feature-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .feature-icon { width: 52px; height: 52px; background: var(--green-pale); border-radius: 14px; display: flex; align-items: center; justify-content: center; font-size: 24px; margin-bottom: 18px; }
+  .feature-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 10px; }
+  .feature-card p { color: var(--gray); line-height: 1.6; font-size: 15px; }
+
+  /* PRODUCTS */
+  .products-section { background: var(--green-pale); }
+  .products-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 20px; }
+  .product-card { background: var(--white); border-radius: var(--radius); overflow: hidden; border: 1px solid #ebebeb; transition: transform 0.2s, box-shadow 0.2s; }
+  .product-card:hover { transform: translateY(-4px); box-shadow: var(--shadow); }
+  .product-img { height: 160px; display: flex; align-items: center; justify-content: center; font-size: 60px; background: var(--cream); }
+  .product-info { padding: 18px; }
+  .product-cat { font-size: 11px; color: var(--green); font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; }
+  .product-name { font-size: 16px; font-weight: 600; margin: 4px 0 8px; }
+  .product-price { font-size: 20px; font-weight: 800; color: var(--green); }
+
+  /* CONTACT */
+  .contact-section { background: var(--white); }
+  .contact-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 48px; align-items: start; }
+  .contact-info h2 { font-family: 'Playfair Display', serif; font-size: 38px; font-weight: 800; margin-bottom: 16px; }
+  .contact-info p { color: var(--gray); font-size: 16px; line-height: 1.7; margin-bottom: 32px; }
+  .contact-cards { display: flex; flex-direction: column; gap: 16px; }
+  .contact-item { display: flex; align-items: flex-start; gap: 16px; background: var(--cream); border-radius: 14px; padding: 18px 20px; border: 1px solid #e8e8e8; }
+  .contact-icon-wrap { width: 44px; height: 44px; background: var(--green); border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 20px; flex-shrink: 0; }
+  .contact-item-label { font-size: 12px; color: var(--gray); font-weight: 500; text-transform: uppercase; letter-spacing: 0.06em; }
+  .contact-item-val { font-size: 16px; font-weight: 700; margin-top: 2px; color: var(--dark); }
+  .map-embed { border-radius: 20px; overflow: hidden; border: 1px solid #e0e0e0; box-shadow: var(--shadow); }
+  .map-embed iframe { width: 100%; height: 380px; border: none; display: block; }
+
+  /* HOURS */
+  .hours-section { background: linear-gradient(135deg, var(--green) 0%, #0d3d24 100%); color: var(--white); text-align: center; }
+  .hours-section h2 { font-family: 'Playfair Display', serif; font-size: 36px; margin-bottom: 40px; }
+  .hours-grid { display: grid; grid-template-columns: repeat(7, 1fr); gap: 12px; }
+  .day-card { background: rgba(255,255,255,0.1); border: 1px solid rgba(255,255,255,0.15); border-radius: 14px; padding: 20px 10px; }
+  .day-card.today { background: var(--gold); border-color: var(--gold); }
+  .day-name { font-size: 12px; font-weight: 700; opacity: 0.7; text-transform: uppercase; letter-spacing: 0.06em; }
+  .day-card.today .day-name { opacity: 1; color: var(--dark); }
+  .day-hours { font-size: 15px; font-weight: 700; margin-top: 8px; }
+  .day-card.today .day-hours { color: var(--dark); }
+
+  /* FOOTER */
+  footer { background: var(--dark); color: rgba(255,255,255,0.7); padding: 48px 24px 24px; }
+  .footer-inner { max-width: 1200px; margin: 0 auto; display: grid; grid-template-columns: 2fr 1fr 1fr; gap: 48px; margin-bottom: 40px; }
+  .footer-brand .brand-name { font-family: 'Playfair Display', serif; font-size: 24px; color: var(--white); font-weight: 700; margin-bottom: 12px; }
+  .footer-brand p { font-size: 14px; line-height: 1.7; }
+  .footer-col h4 { color: var(--white); font-size: 14px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.08em; margin-bottom: 16px; }
+  .footer-col ul { list-style: none; }
+  .footer-col ul li { margin-bottom: 10px; }
+  .footer-col ul li a { color: rgba(255,255,255,0.6); text-decoration: none; font-size: 14px; transition: color 0.2s; }
+  .footer-col ul li a:hover { color: var(--gold); }
+  .footer-bottom { max-width: 1200px; margin: 0 auto; border-top: 1px solid rgba(255,255,255,0.1); padding-top: 24px; display: flex; justify-content: space-between; align-items: center; font-size: 13px; }
+
+  /* ===== ADMIN FULL PAGE ===== */
+  #adminPage {
+    display: none;
+    position: fixed; inset: 0;
+    background: #f0f4f8;
+    z-index: 9999;
+    overflow-y: auto;
+    font-family: 'DM Sans', sans-serif;
+  }
+  #adminPage.active { display: block; }
+
+  .adm-header {
+    background: var(--green);
+    color: #fff;
+    padding: 0 32px;
+    height: 64px;
+    display: flex; align-items: center; justify-content: space-between;
+    position: sticky; top: 0; z-index: 10;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.2);
+  }
+  .adm-logo { font-family: 'Playfair Display', serif; font-size: 20px; font-weight: 800; }
+  .adm-logo span { color: var(--gold); }
+  .adm-nav { display: flex; gap: 8px; }
+  .adm-tab {
+    background: rgba(255,255,255,0.12); border: none; color: #fff;
+    padding: 8px 18px; border-radius: 8px; font-size: 13px; font-weight: 600;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .adm-tab:hover, .adm-tab.active { background: rgba(255,255,255,0.25); }
+  .adm-right { display: flex; align-items: center; gap: 12px; }
+  .adm-user { font-size: 13px; opacity: 0.85; }
+  .btn-logout-adm {
+    background: rgba(255,255,255,0.15); border: 1px solid rgba(255,255,255,0.3);
+    color: #fff; padding: 7px 16px; border-radius: 8px;
+    font-size: 13px; font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .btn-logout-adm:hover { background: rgba(255,0,0,0.25); }
+
+  .adm-body { max-width: 1100px; margin: 0 auto; padding: 32px 24px; }
+
+  /* STATS */
+  .adm-stats { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px; margin-bottom: 32px; }
+  .adm-stat { background: var(--white); border-radius: 14px; border: 1px solid #e8e8e8; padding: 22px 20px; }
+  .adm-stat-label { font-size: 11px; color: var(--gray); font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; }
+  .adm-stat-val { font-size: 30px; font-weight: 800; margin-top: 6px; color: var(--dark); }
+  .adm-stat-sub { font-size: 12px; color: var(--green); font-weight: 600; margin-top: 4px; }
+
+  /* PANEL VIEWS */
+  .adm-panel { display: none; }
+  .adm-panel.active { display: block; }
+
+  /* PRODUCTS PANEL */
+  .panel-topbar { display: flex; align-items: center; justify-content: space-between; margin-bottom: 20px; }
+  .panel-topbar h2 { font-size: 22px; font-weight: 800; }
+  .btn-add-new {
+    background: var(--green); color: #fff;
+    border: none; border-radius: 10px;
+    padding: 11px 22px; font-size: 14px; font-weight: 700;
+    cursor: pointer; font-family: 'DM Sans', sans-serif;
+    transition: background 0.2s, transform 0.1s;
+  }
+  .btn-add-new:hover { background: var(--green-light); transform: translateY(-1px); }
+
+  /* ADD PRODUCT FORM */
+  .add-form-wrap {
+    background: var(--white);
+    border: 2px solid var(--green);
+    border-radius: 16px;
+    padding: 28px;
+    margin-bottom: 24px;
+    display: none;
+  }
+  .add-form-wrap.open { display: block; }
+  .add-form-wrap h3 { font-size: 18px; font-weight: 800; margin-bottom: 20px; color: var(--green); }
+  .form-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; margin-bottom: 14px; }
+  .fg { display: flex; flex-direction: column; gap: 6px; }
+  .fg label { font-size: 12px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em; color: var(--dark); }
+  .fg input, .fg select {
+    padding: 11px 14px; border: 1.5px solid #ddd; border-radius: 10px;
+    font-size: 14px; font-family: 'DM Sans', sans-serif;
+    outline: none; transition: border-color 0.2s;
+    background: #fafafa;
+  }
+  .fg input:focus, .fg select:focus { border-color: var(--green); background: #fff; }
+  .form-actions { display: flex; gap: 10px; }
+  .btn-save {
+    background: var(--green); color: #fff; border: none; border-radius: 10px;
+    padding: 12px 28px; font-size: 14px; font-weight: 700; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .btn-save:hover { background: var(--green-light); }
+  .btn-cancel-form {
+    background: none; color: var(--gray); border: 1.5px solid #ddd; border-radius: 10px;
+    padding: 12px 22px; font-size: 14px; font-weight: 600; cursor: pointer;
+    font-family: 'DM Sans', sans-serif; transition: border-color 0.2s;
+  }
+  .btn-cancel-form:hover { border-color: #aaa; }
+
+  /* PRODUCT TABLE */
+  .product-table-wrap { background: var(--white); border-radius: 16px; border: 1px solid #e8e8e8; overflow: hidden; }
+  .product-table { width: 100%; border-collapse: collapse; }
+  .product-table th { background: #f8f9fa; padding: 13px 16px; text-align: left; font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.07em; color: var(--gray); border-bottom: 1px solid #ebebeb; }
+  .product-table td { padding: 14px 16px; font-size: 14px; border-bottom: 1px solid #f4f4f4; vertical-align: middle; }
+  .product-table tr:last-child td { border-bottom: none; }
+  .product-table tr:hover td { background: #fafafa; }
+  .td-emoji { font-size: 28px; line-height: 1; }
+  .td-name { font-weight: 700; color: var(--dark); }
+  .td-cat { display: inline-block; background: var(--green-pale); color: var(--green); padding: 3px 10px; border-radius: 20px; font-size: 11px; font-weight: 700; }
+  .td-price { font-size: 16px; font-weight: 800; color: var(--green); }
+  .td-stock { font-size: 13px; color: var(--gray); }
+  .btn-del {
+    background: #fef2f2; color: #dc2626; border: 1px solid #fecaca;
+    border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 700;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+  }
+  .btn-del:hover { background: #fee2e2; }
+  .btn-edit-row {
+    background: var(--green-pale); color: var(--green); border: 1px solid #b6dbc7;
+    border-radius: 8px; padding: 6px 14px; font-size: 12px; font-weight: 700;
+    cursor: pointer; font-family: 'DM Sans', sans-serif; transition: background 0.2s;
+    margin-right: 6px;
+  }
+  .btn-edit-row:hover { background: #c8e6d4; }
+  .empty-row td { text-align: center; padding: 40px; color: var(--gray); font-size: 15px; }
+
+  /* SEARCH/FILTER BAR */
+  .filter-bar { display: flex; gap: 12px; margin-bottom: 18px; flex-wrap: wrap; }
+  .filter-bar input, .filter-bar select {
+    padding: 10px 14px; border: 1.5px solid #ddd; border-radius: 10px;
+    font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none;
+    transition: border-color 0.2s; background: var(--white);
+  }
+  .filter-bar input { flex: 1; min-width: 200px; }
+  .filter-bar input:focus, .filter-bar select:focus { border-color: var(--green); }
+
+  /* TOAST */
+  .toast {
+    position: fixed; bottom: 28px; right: 28px;
+    background: var(--green); color: #fff;
+    padding: 14px 24px; border-radius: 12px;
+    font-size: 14px; font-weight: 600;
+    box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+    transform: translateY(80px); opacity: 0;
+    transition: all 0.35s cubic-bezier(.34,1.56,.64,1);
+    z-index: 9999; pointer-events: none;
+  }
+  .toast.show { transform: translateY(0); opacity: 1; }
+
+  /* RESPONSIVE */
+  @media (max-width: 900px) {
+    .hero-inner { grid-template-columns: 1fr; }
+    .hero-visual { display: none; }
+    .features-grid { grid-template-columns: 1fr 1fr; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .contact-grid { grid-template-columns: 1fr; }
+    .hours-grid { grid-template-columns: repeat(4, 1fr); }
+    .footer-inner { grid-template-columns: 1fr; gap: 24px; }
+    .adm-stats { grid-template-columns: 1fr 1fr; }
+    .form-grid { grid-template-columns: 1fr 1fr; }
+    nav { display: none; }
+  }
+  @media (max-width: 600px) {
+    .hero h1 { font-size: 36px; }
+    .features-grid { grid-template-columns: 1fr; }
+    .products-grid { grid-template-columns: 1fr 1fr; }
+    .adm-stats { grid-template-columns: 1fr 1fr; }
+    .form-grid { grid-template-columns: 1fr; }
+    .form-row { grid-template-columns: 1fr; }
+    .adm-nav { display: none; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============ HEADER ============ -->
+<header>
+  <div class="header-inner">
+    <a class="logo" href="#">
+      <div class="logo-icon">🌿</div>
+      <div class="logo-text">
+        <div class="brand">Şəfa Market</div>
+        <div class="tagline">Təzə · Keyfiyyətli · Sərfəli</div>
+      </div>
+    </a>
+    <nav>
+      <a href="#products">Məhsullar</a>
+      <a href="#about">Haqqımızda</a>
+      <a href="#contact">Əlaqə</a>
+      <a href="#hours">İş saatları</a>
+    </nav>
+    <div class="header-actions"></div>
+  </div>
+</header>
+
+<!-- ============ HERO ============ -->
+<section class="hero">
+  <div class="hero-inner">
+    <div class="hero-content">
+      <div class="hero-badge">⭐ Bakının ən güvenilir marketi</div>
+      <h1>Hər gün <span>Təzə</span>,<br>Hər zaman <span>Keyfiyyətli</span></h1>
+      <p>Şəfa Market — ailənizdə hər gün lazım olan məhsulları ən yüksək keyfiyyətdə, ən sərfəli qiymətlərlə təqdim edirik.</p>
+      <div class="hero-btns">
+        <a href="#products" class="btn-primary">🛒 Məhsullara bax</a>
+        <a href="#contact" class="btn-outline">📍 Ünvanımız</a>
+      </div>
+    </div>
+    <div class="hero-visual">
+      <div class="hero-card">
+        <h3>Marketimiz haqqında</h3>
+        <div class="stat-row">
+          <div class="stat-item"><span class="stat-label">🛍️ Məhsul çeşidi</span><span class="stat-val">2000+</span></div>
+          <div class="stat-item"><span class="stat-label">⭐ Müştəri reytinqi</span><span class="stat-val">4.9/5</span></div>
+          <div class="stat-item"><span class="stat-label">👥 Daimi müştəri</span><span class="stat-val">5000+</span></div>
+          <div class="stat-item"><span class="stat-label">🗓️ İldir xidmətdəyik</span><span class="stat-val">8 il</span></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FEATURES ============ -->
+<section class="section" id="about">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Niyə Şəfa Market?</div>
+      <h2>Fərqimiz hiss edilir</h2>
+      <p>Keyfiyyətimizdə heç bir güzəşt etmirik</p>
+    </div>
+    <div class="features-grid">
+      <div class="feature-card"><div class="feature-icon">🌱</div><h3>Təzə Məhsullar</h3><p>Hər gün yeni gələn meyvə-tərəvəz, süd məhsulları və çörək. Saxlancı yox — birbaşa fermerlərdən.</p></div>
+      <div class="feature-card"><div class="feature-icon">💰</div><h3>Sərfəli Qiymətlər</h3><p>Bazardakı ən yaxşı qiymətlər. Daimi müştərilərimiz üçün xüsusi endirim kartları mövcuddur.</p></div>
+      <div class="feature-card"><div class="feature-icon">🤝</div><h3>Mehriban Xidmət</h3><p>Peşəkar və mehriban komandamız hər zaman kömək etməyə hazırdır. Müştəri məmnuniyyəti bizim prioritetimizdir.</p></div>
+      <div class="feature-card"><div class="feature-icon">🔒</div><h3>Keyfiyyət Zəmanəti</h3><p>Bütün məhsullar keyfiyyət standartlarına uyğundur. Məmnun olmasanız, pul geri qaytarılır.</p></div>
+      <div class="feature-card"><div class="feature-icon">📦</div><h3>Geniş Çeşid</h3><p>2000-dən artıq məhsul çeşidi ilə ailənizin bütün ehtiyaclarını bir yerdə qarşılayın.</p></div>
+      <div class="feature-card"><div class="feature-icon">⏰</div><h3>Rahat İş Saatları</h3><p>Həftənin 7 günü, saat 08:00–22:00 arası xidmətinizdəyik. Bayram günlərində də açıqıq.</p></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ PRODUCTS ============ -->
+<section class="section products-section" id="products">
+  <div class="section-inner">
+    <div class="section-header">
+      <div class="section-tag">Məhsullarımız</div>
+      <h2>Ən çox satılanlar</h2>
+      <p>Müştərilərimizin ən çox seçdiyi məhsullar</p>
+    </div>
+    <div class="products-grid" id="publicProductsGrid">
+      <!-- Rendered by JS -->
+    </div>
+  </div>
+</section>
+
+<!-- ============ HOURS ============ -->
+<section class="section hours-section" id="hours">
+  <div class="section-inner">
+    <h2>📅 İş Saatlarımız</h2>
+    <div class="hours-grid">
+      <div class="day-card"><div class="day-name">Baz.E</div><div class="day-hours">08:00–22:00</div></div>
+      <div class="day-card"><div class="day-name">Baz.A</div><div class="day-hours">08:00–22:00</div></div>
+      <div class="day-card"><div class="day-name">Çər</div><div class="day-hours">08:00–22:00</div></div>
+      <div class="day-card today"><div class="day-name">Cümə.A</div><div class="day-hours">08:00–22:00</div></div>
+      <div class="day-card"><div class="day-name">Cümə</div><div class="day-hours">08:00–22:00</div></div>
+      <div class="day-card"><div class="day-name">Şənbə</div><div class="day-hours">08:00–23:00</div></div>
+      <div class="day-card"><div class="day-name">Bazar</div><div class="day-hours">08:00–23:00</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ CONTACT ============ -->
+<section class="section contact-section" id="contact">
+  <div class="section-inner">
+    <div class="contact-grid">
+      <div class="contact-info">
+        <div class="section-tag">Əlaqə</div>
+        <h2>Bizi tapın,<br>bizimlə əlaqə saxlayın</h2>
+        <p>Bakıda yerləşirik. İstənilən vaxt zəng edə, marketimizə baş çəkə bilərsiniz.</p>
+        <div class="contact-cards">
+          <div class="contact-item"><div class="contact-icon-wrap">📍</div><div><div class="contact-item-label">Ünvan</div><div class="contact-item-val">Bakı şəhəri, Nizami rayonu</div></div></div>
+          <div class="contact-item"><div class="contact-icon-wrap">📞</div><div><div class="contact-item-label">Telefon</div><div class="contact-item-val">+994 50 XXX XX XX</div></div></div>
+          <div class="contact-item"><div class="contact-icon-wrap">📱</div><div><div class="contact-item-label">WhatsApp</div><div class="contact-item-val">+994 55 XXX XX XX</div></div></div>
+          <div class="contact-item"><div class="contact-icon-wrap">📧</div><div><div class="contact-item-label">E-poçt</div><div class="contact-item-val">info@sefamarket.az</div></div></div>
+        </div>
+      </div>
+      <div>
+        <div class="map-embed">
+          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97184.74429448282!2d49.76720475820311!3d40.40927684226497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d6bd6211cf9%3A0x343f6b5e7ae56c6b!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2s!4v1700000000000" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+        </div>
+        <p style="text-align:center;margin-top:12px;font-size:13px;color:#888;">
+          📍 <a href="https://maps.app.goo.gl/78HuTW4zDDb5vvz39" target="_blank" style="color:var(--green);font-weight:600;text-decoration:none;">Google Maps-də aç →</a>
+        </p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ============ FOOTER ============ -->
+<footer>
+  <div class="footer-inner">
+    <div class="footer-brand">
+      <div class="brand-name">🌿 Şəfa Market</div>
+      <p>Bakının ən güvenilir marketi. Hər gün təzə, hər zaman keyfiyyətli məhsullarla ailənizdə hər gün yanınızdayıq.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Keçidlər</h4>
+      <ul>
+        <li><a href="#about">Haqqımızda</a></li>
+        <li><a href="#products">Məhsullar</a></li>
+        <li><a href="#hours">İş saatları</a></li>
+        <li><a href="#contact">Əlaqə</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Əlaqə</h4>
+      <ul>
+        <li><a href="tel:+994501234567">📞 +994 50 XXX XX XX</a></li>
+        <li><a href="#">📱 WhatsApp</a></li>
+        <li><a href="mailto:info@sefamarket.az">📧 info@sefamarket.az</a></li>
+        <li><a href="https://maps.app.goo.gl/78HuTW4zDDb5vvz39" target="_blank">📍 Xəritədə gör</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <span>© 2024 Şəfa Market. Bütün hüquqlar qorunur.</span>
+    <span>❤️ Bakıda hazırlanmışdır</span>
+  </div>
+</footer>
+
+<!-- ============ ADMIN FULL PAGE ============ -->
+<div id="adminPage">
+  <div class="adm-header">
+    <div class="adm-logo">🌿 Şəfa <span>Admin</span></div>
+    <div class="adm-nav">
+      <button class="adm-tab active" onclick="switchTab('products')">📦 Məhsullar</button>
+      <button class="adm-tab" onclick="switchTab('stats')">📊 Statistika</button>
+    </div>
+    <div class="adm-right">
+      <span class="adm-user">👤 Admin</span>
+      <button class="btn-logout-adm" onclick="doLogout()">Çıxış →</button>
+    </div>
+  </div>
+
+  <div class="adm-body">
+    <!-- STATS ROW -->
+    <div class="adm-stats">
+      <div class="adm-stat">
+        <div class="adm-stat-label">Cəmi Məhsul</div>
+        <div class="adm-stat-val" id="statTotal">—</div>
+        <div class="adm-stat-sub">siyahıda</div>
+      </div>
+      <div class="adm-stat">
+        <div class="adm-stat-label">Kateqoriyalar</div>
+        <div class="adm-stat-val" id="statCats">—</div>
+        <div class="adm-stat-sub">növ</div>
+      </div>
+      <div class="adm-stat">
+        <div class="adm-stat-label">Ən Ucuz</div>
+        <div class="adm-stat-val" id="statMin">—</div>
+        <div class="adm-stat-sub">₼</div>
+      </div>
+      <div class="adm-stat">
+        <div class="adm-stat-label">Ən Baha</div>
+        <div class="adm-stat-val" id="statMax">—</div>
+        <div class="adm-stat-sub">₼</div>
+      </div>
+    </div>
+
+    <!-- PRODUCTS PANEL -->
+    <div class="adm-panel active" id="panelProducts">
+      <div class="panel-topbar">
+        <h2>📦 Məhsul İdarəetməsi</h2>
+        <button class="btn-add-new" onclick="toggleAddForm()">+ Yeni Məhsul Əlavə Et</button>
+      </div>
+
+      <!-- ADD / EDIT FORM -->
+      <div class="add-form-wrap" id="addFormWrap">
+        <h3 id="formTitle">➕ Yeni Məhsul</h3>
+        <div class="form-grid">
+          <div class="fg">
+            <label>Məhsul adı *</label>
+            <input type="text" id="fName" placeholder="məs. Alma (1 kq)" />
+          </div>
+          <div class="fg">
+            <label>Kateqoriya *</label>
+            <select id="fCat">
+              <option value="">Seçin...</option>
+              <option>Meyvə</option>
+              <option>Tərəvəz</option>
+              <option>Süd məhsulları</option>
+              <option>Çörək</option>
+              <option>Kənd məhsulları</option>
+              <option>Yağlar</option>
+              <option>İçkilər</option>
+              <option>Şirniyyat</option>
+              <option>Ət məhsulları</option>
+              <option>Makaron/Taxıl</option>
+              <option>Digər</option>
+            </select>
+          </div>
+          <div class="fg">
+            <label>Qiymət (₼) *</label>
+            <input type="number" id="fPrice" placeholder="0.00" step="0.01" min="0" />
+          </div>
+        </div>
+        <div class="form-row">
+          <div class="fg">
+            <label>Emoji / İkon</label>
+            <input type="text" id="fEmoji" placeholder="məs. 🍎" maxlength="4" />
+          </div>
+          <div class="fg">
+            <label>Stok miqdarı</label>
+            <input type="number" id="fStock" placeholder="məs. 50" min="0" />
+          </div>
+        </div>
+        <div class="form-actions">
+          <button class="btn-save" onclick="saveProduct()">💾 Yadda saxla</button>
+          <button class="btn-cancel-form" onclick="cancelForm()">Ləğv et</button>
+        </div>
+      </div>
+
+      <!-- FILTER BAR -->
+      <div class="filter-bar">
+        <input type="text" id="searchInput" placeholder="🔍 Məhsul axtar..." oninput="renderTable()" />
+        <select id="catFilter" onchange="renderTable()">
+          <option value="">Bütün kateqoriyalar</option>
+          <option>Meyvə</option>
+          <option>Tərəvəz</option>
+          <option>Süd məhsulları</option>
+          <option>Çörək</option>
+          <option>Kənd məhsulları</option>
+          <option>Yağlar</option>
+          <option>İçkilər</option>
+          <option>Şirniyyat</option>
+          <option>Ət məhsulları</option>
+          <option>Makaron/Taxıl</option>
+          <option>Digər</option>
+        </select>
+      </div>
+
+      <!-- TABLE -->
+      <div class="product-table-wrap">
+        <table class="product-table">
+          <thead>
+            <tr>
+              <th>İkon</th>
+              <th>Məhsul adı</th>
+              <th>Kateqoriya</th>
+              <th>Qiymət</th>
+              <th>Stok</th>
+              <th>Əməliyyat</th>
+            </tr>
+          </thead>
+          <tbody id="productTableBody"></tbody>
+        </table>
+      </div>
+    </div>
+
+    <!-- STATS PANEL -->
+    <div class="adm-panel" id="panelStats">
+      <div class="panel-topbar"><h2>📊 Statistika</h2></div>
+      <div style="background:var(--white);border-radius:16px;border:1px solid #e8e8e8;padding:32px;">
+        <p style="color:var(--gray);font-size:16px;line-height:1.7;">
+          Burada satış statistikaları, müştəri məlumatları və digər analitika məlumatları göstəriləcək.<br><br>
+          <strong>Hazırda mövcud olan məlumatlar:</strong>
+        </p>
+        <div id="statsDetail" style="margin-top:20px;display:grid;gap:12px;"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<!-- TOAST -->
+<div class="toast" id="toast"></div>
+
+<script>
+// ======= DATA =======
+let products = [
+  { id:1, name:'Alma (1 kq)', cat:'Meyvə', price:2.50, emoji:'🍎', stock:120 },
+  { id:2, name:'Süd (1 litr)', cat:'Süd məhsulları', price:1.80, emoji:'🥛', stock:80 },
+  { id:3, name:'Ağ Çörək', cat:'Çörək', price:0.60, emoji:'🍞', stock:200 },
+  { id:4, name:'Pendir (500 q)', cat:'Süd məhsulları', price:4.20, emoji:'🧀', stock:45 },
+  { id:5, name:'Pomidor (1 kq)', cat:'Tərəvəz', price:1.50, emoji:'🍅', stock:95 },
+  { id:6, name:'Yumurta (10 ədəd)', cat:'Kənd məhsulları', price:2.80, emoji:'🥚', stock:60 },
+  { id:7, name:'Ayçiçək yağı (1 L)', cat:'Yağlar', price:3.90, emoji:'🛢️', stock:40 },
+  { id:8, name:'Çay (100 q)', cat:'İçkilər', price:2.20, emoji:'☕', stock:70 }
+];
+let nextId = 9;
+let editingId = null;
+
+// ======= SECRET URL LISTENER =======
+// /admin1903 typed in address bar won't work in a single HTML file,
+// so we listen for a keyboard sequence instead: type /admin1903
+let keyBuffer = '';
+document.addEventListener('keydown', function(e) {
+  if (document.getElementById('adminPage').classList.contains('active')) return;
+  keyBuffer += e.key;
+  if (keyBuffer.length > 12) keyBuffer = keyBuffer.slice(-12);
+  if (keyBuffer.endsWith('/admin1903')) {
+    keyBuffer = '';
+    openAdminPage();
+  }
+});
+
+// Also listen for hash change: yoursite.html#admin1903
+function checkHash() {
+  if (window.location.hash === '#admin1903') {
+    window.location.hash = '';
+    openAdminPage();
+  }
+}
+window.addEventListener('hashchange', checkHash);
+window.addEventListener('load', checkHash);
+
+function openAdminPage() {
+  document.getElementById('adminPage').classList.add('active');
+  document.body.style.overflow = 'hidden';
+  renderTable();
+  updateStats();
+  renderPublicProducts();
+}
+
+function doLogout() {
+  document.getElementById('adminPage').classList.remove('active');
+  document.body.style.overflow = '';
+  renderPublicProducts();
+  showToast('Admin paneldən çıxış edildi');
+}
+
+// ======= TABS =======
+function switchTab(tab) {
+  document.querySelectorAll('.adm-tab').forEach(t => t.classList.remove('active'));
+  document.querySelectorAll('.adm-panel').forEach(p => p.classList.remove('active'));
+  event.target.classList.add('active');
+  document.getElementById('panel' + tab.charAt(0).toUpperCase() + tab.slice(1)).classList.add('active');
+  if (tab === 'stats') renderStatsDetail();
+}
+
+// ======= FORM =======
+function toggleAddForm() {
+  const wrap = document.getElementById('addFormWrap');
+  editingId = null;
+  clearForm();
+  document.getElementById('formTitle').textContent = '➕ Yeni Məhsul';
+  wrap.classList.toggle('open');
+}
+
+function cancelForm() {
+  document.getElementById('addFormWrap').classList.remove('open');
+  editingId = null;
+  clearForm();
+}
+
+function clearForm() {
+  ['fName','fCat','fPrice','fEmoji','fStock'].forEach(id => {
+    const el = document.getElementById(id);
+    if (el.tagName === 'SELECT') el.value = '';
+    else el.value = '';
+  });
+}
+
+function saveProduct() {
+  const name = document.getElementById('fName').value.trim();
+  const cat = document.getElementById('fCat').value;
+  const price = parseFloat(document.getElementById('fPrice').value);
+  const emoji = document.getElementById('fEmoji').value.trim() || '📦';
+  const stock = parseInt(document.getElementById('fStock').value) || 0;
+
+  if (!name) { showToast('❌ Məhsul adı daxil edin!', true); return; }
+  if (!cat) { showToast('❌ Kateqoriya seçin!', true); return; }
+  if (isNaN(price) || price < 0) { showToast('❌ Düzgün qiymət daxil edin!', true); return; }
+
+  if (editingId !== null) {
+    const idx = products.findIndex(p => p.id === editingId);
+    if (idx !== -1) products[idx] = { id: editingId, name, cat, price, emoji, stock };
+    showToast('✅ Məhsul yeniləndi!');
+    editingId = null;
+  } else {
+    products.push({ id: nextId++, name, cat, price, emoji, stock });
+    showToast('✅ Məhsul əlavə edildi!');
+  }
+
+  cancelForm();
+  renderTable();
+  updateStats();
+  renderPublicProducts();
+}
+
+function editProduct(id) {
+  const p = products.find(x => x.id === id);
+  if (!p) return;
+  editingId = id;
+  document.getElementById('fName').value = p.name;
+  document.getElementById('fCat').value = p.cat;
+  document.getElementById('fPrice').value = p.price;
+  document.getElementById('fEmoji').value = p.emoji;
+  document.getElementById('fStock').value = p.stock;
+  document.getElementById('formTitle').textContent = '✏️ Məhsulu Redaktə Et';
+  document.getElementById('addFormWrap').classList.add('open');
+  document.getElementById('addFormWrap').scrollIntoView({ behavior: 'smooth' });
+}
+
+function deleteProduct(id) {
+  if (!confirm('Bu məhsulu silmək istədiyinizə əminsiniz?')) return;
+  products = products.filter(p => p.id !== id);
+  renderTable();
+  updateStats();
+  renderPublicProducts();
+  showToast('🗑️ Məhsul silindi');
+}
+
+// ======= TABLE =======
+function renderTable() {
+  const search = document.getElementById('searchInput').value.toLowerCase();
+  const cat = document.getElementById('catFilter').value;
+  const filtered = products.filter(p =>
+    (!search || p.name.toLowerCase().includes(search) || p.cat.toLowerCase().includes(search)) &&
+    (!cat || p.cat === cat)
+  );
+  const tbody = document.getElementById('productTableBody');
+  if (filtered.length === 0) {
+    tbody.innerHTML = '<tr class="empty-row"><td colspan="6">🔍 Məhsul tapılmadı</td></tr>';
+    return;
+  }
+  tbody.innerHTML = filtered.map(p => `
+    <tr>
+      <td class="td-emoji">${p.emoji}</td>
+      <td class="td-name">${p.name}</td>
+      <td><span class="td-cat">${p.cat}</span></td>
+      <td class="td-price">${p.price.toFixed(2)} ₼</td>
+      <td class="td-stock">${p.stock} ədəd</td>
+      <td>
+        <button class="btn-edit-row" onclick="editProduct(${p.id})">✏️ Düzəlt</button>
+        <button class="btn-del" onclick="deleteProduct(${p.id})">🗑️ Sil</button>
+      </td>
+    </tr>
+  `).join('');
+}
+
+// ======= STATS =======
+function updateStats() {
+  document.getElementById('statTotal').textContent = products.length;
+  const cats = [...new Set(products.map(p => p.cat))].length;
+  document.getElementById('statCats').textContent = cats;
+  if (products.length) {
+    document.getElementById('statMin').textContent = Math.min(...products.map(p=>p.price)).toFixed(2);
+    document.getElementById('statMax').textContent = Math.max(...products.map(p=>p.price)).toFixed(2);
+  }
+}
+
+function renderStatsDetail() {
+  const catGroups = {};
+  products.forEach(p => {
+    if (!catGroups[p.cat]) catGroups[p.cat] = { count: 0, total: 0 };
+    catGroups[p.cat].count++;
+    catGroups[p.cat].total += p.price;
+  });
+  document.getElementById('statsDetail').innerHTML = Object.entries(catGroups).map(([cat, data]) => `
+    <div style="display:flex;align-items:center;justify-content:space-between;background:#f8f9fa;border-radius:10px;padding:12px 18px;">
+      <div><strong>${cat}</strong> <span style="color:var(--gray);font-size:13px;">(${data.count} məhsul)</span></div>
+      <div style="color:var(--green);font-weight:700;">Ort: ${(data.total/data.count).toFixed(2)} ₼</div>
+    </div>
+  `).join('');
+}
+
+// ======= PUBLIC PRODUCT GRID =======
+function renderPublicProducts() {
+  const grid = document.getElementById('publicProductsGrid');
+  if (!grid) return;
+  grid.innerHTML = products.map(p => `
+    <div class="product-card">
+      <div class="product-img">${p.emoji}</div>
+      <div class="product-info">
+        <div class="product-cat">${p.cat}</div>
+        <div class="product-name">${p.name}</div>
+        <div class="product-price">${p.price.toFixed(2)} ₼</div>
+      </div>
+    </div>
+  `).join('');
+}
+
+// ======= TOAST =======
+function showToast(msg, isErr) {
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.background = isErr ? '#dc2626' : 'var(--green)';
+  t.classList.add('show');
+  setTimeout(() => t.classList.remove('show'), 2800);
+}
+
+// ======= INIT =======
+renderPublicProducts();
+</script>
+</body>
+</html>
