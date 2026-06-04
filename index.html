@@ -5,7 +5,6 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Şəfa Market</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
-<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--green:#1a5c3a;--gl:#2d8a58;--gp:#e8f5ee;--gold:#c9973a;--cream:#fdf8f0;--dark:#1a1a1a;--gray:#6b7280;--w:#fff;--r:14px;--sh:0 4px 24px rgba(26,92,58,0.10);}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -107,7 +106,6 @@ header{position:sticky;top:0;z-index:200;background:var(--w);border-bottom:1px s
 .ci-qty{display:flex;align-items:center;gap:8px;margin-top:6px;}
 .qty-btn{width:26px;height:26px;border-radius:6px;border:1.5px solid #ddd;background:none;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
 .qty-btn:hover{border-color:var(--green);color:var(--green);}
-.qty-val覆{font-size:14px;font-weight:700;min-width:20px;text-align:center;}
 .qty-val{font-size:14px;font-weight:700;min-width:20px;text-align:center;}
 .ci-del{background:none;border:none;color:#ddd;font-size:18px;transition:color .2s;}
 .ci-del:hover{color:#dc2626;}
@@ -151,7 +149,6 @@ header{position:sticky;top:0;z-index:200;background:var(--w);border-bottom:1px s
 .pay-opt:hover{border-color:var(--green);}
 .pay-opt.selected{border-color:var(--green);background:var(--gp);}
 .pay-opt .po-ic{font-size:28px;margin-bottom:6px;}
-.pay-opt .po-lb覆{font-size:13px;font-weight:700;}
 .pay-opt .po-lb{font-size:13px;font-weight:700;}
 .pay-opt .po-sub{font-size:11px;color:var(--gray);margin-top:2px;}
 .order-sum{background:#f8f9fa;border-radius:12px;padding:16px;margin-bottom:20px;}
@@ -184,7 +181,6 @@ header{position:sticky;top:0;z-index:200;background:var(--w);border-bottom:1px s
 .ci-card{display:flex;align-items:flex-start;gap:14px;background:var(--cream);border-radius:12px;padding:16px 18px;border:1px solid #e8e8e8;}
 .ci-card-ic{width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
 .ci-card-lb{font-size:11px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
-.ci-card-vl覆{font-size:15px;font-weight:700;margin-top:2px;}
 .ci-card-vl{font-size:15px;font-weight:700;margin-top:2px;}
 .map-wrap{border-radius:18px;overflow:hidden;border:1px solid #e0e0e0;box-shadow:var(--sh);}
 .map-wrap iframe{width:100%;height:360px;border:none;display:block;}
@@ -203,231 +199,9 @@ header{position:sticky;top:0;z-index:200;background:var(--w);border-bottom:1px s
 /* FOOTER */
 footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;}
 .ft-in{max-width:1200px;margin:0 auto;display:grid;grid-template-columns:2fr 1fr 1fr;gap:48px;margin-bottom:36px;}
-.ft-brand .bn{font-family:'Playfair Display',serif;font-size:22px;color:#fff;font-weight:700;margin-bottom:10px;}
-.ft-brand p{font-size:13px;line-height:1.7;}
-.ft-col h4{color:#fff;font-size:13px;font-weight:700;text-transform:uppercase;letter-spacing:.07em;margin-bottom:14px;}
-.ft-col ul{list-style:none;}
-.ft-col ul li{margin-bottom:8px;}
-.ft-col ul li a{color:rgba(255,255,255,.6);font-size:13px;transition:color .2s;}
-.ft-col ul li a:hover{color:var(--gold);}
-.ft-bot{max-width:1200px;margin:0 auto;border-top:1px solid rgba(255,255,255,.1);padding-top:20px;display:flex;justify-content:space-between;font-size:12px;}
-
-/* ===== ADMIN ===== */
-#adminPage{display:none;position:fixed;inset:0;background:#f0f4f8;z-index:9999;overflow-y:auto;}
-#adminPage.open{display:block;}
-.adm-hd{background:var(--green);color:#fff;padding:0 32px;height:62px;display:flex;align-items:center;justify-content:space-between;position:sticky;top:0;z-index:10;box-shadow:0 2px 16px rgba(0,0,0,.2);}
-.adm-logo{font-family:'Playfair Display',serif;font-size:19px;font-weight:800;}
-.adm-logo span{color:var(--gold);}
-.adm-tabs{display:flex;gap:6px;}
-.adm-tab{background:rgba(255,255,255,.12);border:none;color:#fff;padding:8px 16px;border-radius:8px;font-size:13px;font-weight:600;transition:background .2s;}
-.adm-tab:hover,.adm-tab.on{background:rgba(255,255,255,.25);}
-.adm-right{display:flex;align-items:center;gap:10px;}
-.adm-logout{background:rgba(255,255,255,.15);border:1px solid rgba(255,255,255,.3);color:#fff;padding:7px 14px;border-radius:8px;font-size:13px;font-weight:600;transition:background .2s;}
-.adm-logout:hover{background:rgba(220,38,38,.3);}
-.adm-body{max-width:1140px;margin:0 auto;padding:28px 20px;}
-.adm-stats{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-bottom:28px;}
-.ast{background:var(--w);border-radius:12px;border:1px solid #e8e8e8;padding:20px;}
-.ast-lb{font-size:11px;color:var(--gray);font-weight:700;text-transform:uppercase;letter-spacing:.06em;}
-.ast-vl{font-size:28px;font-weight:800;margin-top:6px;}
-.ast-sub{font-size:12px;color:var(--green);font-weight:600;margin-top:3px;}
-.adm-panel{display:none;}
-.adm-panel.on{display:block;}
-.panel-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:18px;flex-wrap:wrap;gap:10px;}
-.panel-top h2{font-size:20px;font-weight:800;}
-.btn-adm-add{background:var(--green);color:#fff;border:none;border-radius:9px;padding:10px 20px;font-size:14px;font-weight:700;transition:background .2s;}
-.btn-adm-add:hover{background:var(--gl);}
-/* ADD FORM */
-.adm-form{background:var(--w);border:2px solid var(--green);border-radius:14px;padding:24px;margin-bottom:20px;display:none;}
-.adm-form.open{display:block;}
-.adm-form h3{font-size:17px;font-weight:800;color:var(--green);margin-bottom:18px;}
-.af-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:12px;margin-bottom:12px;}
-.af-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-bottom:14px;}
-.af-full{margin-bottom:14px;}
-.af .fg{margin-bottom:0;}
-.af-actions{display:flex;gap:10px;}
-.btn-af-save{background:var(--green);color:#fff;border:none;border-radius:9px;padding:11px 26px;font-size:14px;font-weight:700;transition:background .2s;}
-.btn-af-save:hover{background:var(--gl);}
-.btn-af-cancel{background:none;color:var(--gray);border:1.5px solid #ddd;border-radius:9px;padding:11px 20px;font-size:14px;font-weight:600;transition:border-color .2s;}
-.btn-af-cancel:hover{border-color:#aaa;}
-/* FILTER */
-.filter-bar{display:flex;gap:10px;margin-bottom:16px;flex-wrap:wrap;}
-.filter-bar input,.filter-bar select{padding:9px 13px;border:1.5px solid #ddd;border-radius:9px;font-size:13px;font-family:'DM Sans',sans-serif;outline:none;transition:border-color .2s;background:var(--w);}
-.filter-bar input{flex:1;min-width:180px;}
-.filter-bar input:focus,.filter-bar select:focus{border-color:var(--green);}
-/* TABLE */
-.adm-tbl-wrap{background:var(--w);border-radius:14px;border:1px solid #e8e8e8;overflow:hidden;}
-.adm-tbl{width:100%;border-collapse:collapse;}
-.adm-tbl th{background:#f8f9fa;padding:12px 14px;text-align:left;font-size:11px;font-weight:700;text-transform:uppercase;letter-spacing:.06em;color:var(--gray);border-bottom:1px solid #ebebeb;}
-.adm-tbl td{padding:13px 14px;font-size:14px;border-bottom:1px solid #f4f4f4;vertical-align:middle;}
-.adm-tbl tr:last-child td{border-bottom:none;}
-.adm-tbl tr:hover td{background:#fafafa;}
-.td-em{font-size:26px;}
-.td-img-prev{width:44px;height:44px;border-radius:8px;object-fit:cover;}
-.td-nm{font-weight:700;}
-.td-cat-badge{display:inline-block;background:var(--gp);color:var(--green);padding:3px 9px;border-radius:20px;font-size:11px;font-weight:700;}
-.td-price{font-size:15px;font-weight:800;color:var(--green);}
-.btn-ed{background:var(--gp);color:var(--green);border:1px solid #b6dbc7;border-radius:7px;padding:5px 12px;font-size:12px;font-weight:700;margin-right:5px;transition:background .2s;}
-.btn-ed:hover{background:#c8e6d4;}
-.btn-dl{background:#fef2f2;color:#dc2626;border:1px solid #fecaca;border-radius:7px;padding:5px 12px;font-size:12px;font-weight:700;transition:background .2s;}
-.btn-dl:hover{background:#fee2e2;}
-.tbl-empty td{text-align:center;padding:40px;color:var(--gray);font-size:15px;}
-/* ORDERS PANEL */
-.ord-card{background:var(--w);border:1px solid #e8e8e8;border-radius:12px;padding:18px 20px;margin-bottom:12px;}
-.ord-top{display:flex;align-items:center;justify-content:space-between;margin-bottom:10px;}
-.ord-no{font-weight:800;font-size:15px;}
-.ord-status{padding:4px 12px;border-radius:20px;font-size:12px;font-weight:700;}
-.st-new{background:#fef3c7;color:#92400e;}
-.st-done{background:#d1fae5;color:#065f46;}
-.ord-meta{font-size:13px;color:var(--gray);margin-bottom:10px;}
-.ord-items{font-size:13px;line-height:1.7;}
-.ord-total{font-size:15px;font-weight:800;color:var(--green);margin-top:8px;}
-.btn-ord-done{background:var(--gp);color:var(--green);border:1px solid #b6dbc7;border-radius:7px;padding:5px 14px;font-size:12px;font-weight:700;transition:background .2s;}
-.btn-ord-done:hover{background:#c8e6d4;}
-/* TOAST */
-.toast{position:fixed;bottom:24px;right:24px;background:var(--green);color:#fff;padding:13px 22px;border-radius:11px;font-size:14px;font-weight:600;box-shadow:0 8px 24px rgba(0,0,0,.2);transform:translateY(80px);opacity:0;transition:all .35s cubic-bezier(.34,1.56,.64,1);z-index:9999;pointer-events:none;}
-.toast.show{transform:translateY(0);opacity:1;}
-.toast.err{background:#dc2626;}
-
-/* RESPONSIVE */
-@media(max-width:900px){.hero-in{grid-template-columns:1fr;}.hero-cards{display:none;}.cat-grid{grid-template-columns:repeat(3,1fr);}.prod-grid{grid-template-columns:1fr 1fr;}.feat-grid{grid-template-columns:1fr 1fr;}.contact-grid{grid-template-columns:1fr;}.hours-grid{grid-template-columns:repeat(4,1fr);}.ft-in{grid-template-columns:1fr;gap:24px;}.adm-stats{grid-template-columns:1fr 1fr;}.af-grid{grid-template-columns:1fr 1fr;}.main-nav{display:none;}.adm-tabs{display:none;}}
-@media(max-width:600px){.hero h1{font-size:34px;}.cat-grid{grid-template-columns:repeat(2,1fr);}.prod-grid{grid-template-columns:1fr 1fr;}.feat-grid{grid-template-columns:1fr;}.af-grid{grid-template-columns:1fr;}.af-row{grid-template-columns:1fr;}.adm-stats{grid-template-columns:1fr 1fr;}.cart-sidebar{width:100vw;}}
-</style>
-</head>
-<body>
-
-<header>
-  <div class="nav-inner">
-    <a href="#" class="logo">
-      <div class="logo-ic">🌿</div>
-      <div class="logo-tx">
-        <div class="br">Şəfa Market</div>
-        <div class="tg">Təzə · Keyfiyyətli · Sərfəli</div>
-      </div>
-    </a>
-    <nav class="main-nav">
-      <a href="#products">Məhsullar</a>
-      <a href="#about">Haqqımızda</a>
-      <a href="#contact">Əlaqə</a>
-    </nav>
-    <div class="nav-right">
-      <div class="search-wrap">
-        <span class="search-ic">🔍</span>
-        <input type="text" id="globalSearch" placeholder="Məhsul axtar..." oninput="onSearch(this.value)">
-      </div>
-      <button class="cart-btn" onclick="openCart()">
-        🛒 Səbət
-        <span class="cart-badge" id="cartBadge" style="display:none">0</span>
-      </button>
-    </div>
-  </div>
-</header>
-
-<section class="hero">
-  <div class="hero-in">
-    <div>
-      <div class="hero-badge">⭐ Bakının ən güvenilir marketi</div>
-      <h1>Hər gün <span>Təzə</span>,<br>Hər zaman <span>Keyfiyyətli</span></h1>
-      <p>Ailənizdə hər gün lazım olan məhsulları ən yüksək keyfiyyətdə, ən sərfəli qiymətlərlə təqdim edirik.</p>
-      <div class="hero-btns">
-        <button class="btn-gold" onclick="document.getElementById('products').scrollIntoView({behavior:'smooth'})">🛒 Alış-verişə başla</button>
-        <a href="#contact" class="btn-wh">📍 Ünvanımız</a>
-      </div>
-    </div>
-    <div class="hero-cards">
-      <div class="hc"><div class="hc-val" id="hc-prod">—</div><div class="hc-lb">Məhsul çeşidi</div></div>
-      <div class="hc"><div class="hc-val">4.9⭐</div><div class="hc-lb">Müştəri reytinqi</div></div>
-      <div class="hc"><div class="hc-val">5000+</div><div class="hc-lb">Daimi müştəri</div></div>
-      <div class="hc"><div class="hc-val">8 il</div><div class="hc-lb">Xidmətdəyik</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec" id="about">
-  <div class="sec-in">
-    <div class="sec-hd">
-      <div class="sec-tag">Kateqoriyalar</div>
-      <h2>Nə axtarırsınız?</h2>
-    </div>
-    <div class="cat-grid" id="catGrid"></div>
-  </div>
-</section>
-
-<section class="sec prod-sec" id="products">
-  <div class="sec-in">
-    <div class="prod-topbar">
-      <h2 id="prodTitle">Bütün Məhsullar</h2>
-      <select class="sort-sel" onchange="onSort(this.value)">
-        <option value="">Sıralama</option>
-        <option value="price-asc">Qiymət: Azdan çoxa</option>
-        <option value="price-desc">Qiymət: Çoxdan aza</option>
-        <option value="name">Ada görə</option>
-      </select>
-    </div>
-    <div class="prod-grid" id="prodGrid"></div>
-  </div>
-</section>
-
-<section class="sec">
-  <div class="sec-in">
-    <div class="sec-hd">
-      <div class="sec-tag">Niyə Şəfa Market?</div>
-      <h2>Fərqimiz hiss edilir</h2>
-    </div>
-    <div class="feat-grid">
-      <div class="fc"><div class="fc-ic">🌱</div><h3>Hər gün Təzə</h3><p>Meyvə-tərəvəz, süd məhsulları hər gün fermerlərdən birbaşa gəlir.</p></div>
-      <div class="fc"><div class="fc-ic">💰</div><h3>Sərfəli Qiymət</h3><p>Ən yaxşı qiymətlər. Daimi müştərilər üçün xüsusi endirimlər.</p></div>
-      <div class="fc"><div class="fc-ic">🤝</div><h3>Mehriban Xidmət</h3><p>Peşəkar komandamız həmişə kömək etməyə hazırdır.</p></div>
-      <div class="fc"><div class="fc-ic">🔒</div><h3>Keyfiyyət Zəmanəti</h3><p>Məmnun olmasanız, pul geri qaytarılır. Zəmanətsiz satış yoxdur.</p></div>
-      <div class="fc"><div class="fc-ic">📦</div><h3>Geniş Çeşid</h3><p>Ailənizin bütün ehtiyaclarını bir yerdə qarşılayın.</p></div>
-      <div class="fc"><div class="fc-ic">⏰</div><h3>Rahat Saatlar</h3><p>Həftənin 7 günü 08:00–22:00. Bayram günlərində də açıqıq.</p></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec hours-sec" id="hours">
-  <div class="sec-in">
-    <h2>📅 İş Saatlarımız</h2>
-    <div class="hours-grid">
-      <div class="dc"><div class="dc-name">B.Ertəsi</div><div class="dc-hrs">08–22</div></div>
-      <div class="dc"><div class="dc-name">Çərşənbəa</div><div class="dc-hrs">08–22</div></div>
-      <div class="dc"><div class="dc-name">Çərşənbə</div><div class="dc-hrs">08–22</div></div>
-      <div class="dc today"><div class="dc-name">Cümə axş</div><div class="dc-hrs">08–22</div></div>
-      <div class="dc"><div class="dc-name">Cümə</div><div class="dc-hrs">08–22</div></div>
-      <div class="dc"><div class="dc-name">Şənbə</div><div class="dc-hrs">08–23</div></div>
-      <div class="dc"><div class="dc-name">Bazar</div><div class="dc-hrs">08–23</div></div>
-    </div>
-  </div>
-</section>
-
-<section class="sec contact-sec" id="contact">
-  <div class="sec-in">
-    <div class="contact-grid">
-      <div class="contact-info">
-        <div class="sec-tag">Əlaqə</div>
-        <h2>Bizi tapın</h2>
-        <p>Bakıda yerləşirik. İstənilən vaxt zəng edin və ya marketimizə baş çəkin.</p>
-        <div class="ci-cards">
-          <div class="ci-card"><div class="ci-card-ic">📍</div><div><div class="ci-card-lb">Ünvan</div><div class="ci-card-vl">Bakı şəhəri, Nizami rayonu</div></div></div>
-          <div class="ci-card"><div class="ci-card-ic">📞</div><div><div class="ci-card-lb">Telefon</div><div class="ci-card-vl">+994 50 XXX XX XX</div></div></div>
-          <div class="ci-card"><div class="ci-card-ic">📱</div><div><div class="ci-card-lb">WhatsApp</div><div class="ci-card-vl">+994 55 XXX XX XX</div></div></div>
-          <div class="ci-card"><div class="ci-card-ic">📧</div><div><div class="ci-card-lb">E-poçt</div><div class="ci-card-vl">info@sefamarket.az</div></div></div>
-        </div>
-      </div>
-      <div>
-        <div class="map-wrap">
-          <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d97184.74429448282!2d49.76720475820311!3d40.40927684226497!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d6bd6211cf9%3A0x343f6b5e7ae56c6b!2sBaku%2C%20Azerbaijan!5e0!3m2!1sen!2s!4v1700000000000" allowfullscreen loading="lazy"></iframe>
-        </div>
-        <p style="text-align:center;margin-top:10px;font-size:13px;color:#888;">📍 <a href="https://maps.app.goo.gl/78HuTW4zDDb5vvz39" target="_blank" style="color:var(--green);font-weight:600;">Google Maps-də aç →</a></p>
-      </div>
-    </div>
-  </div>
-</section>
-
-<footer>
-  <div class="ft-in">
-    <div class="ft-brand"><div class="bn">🌿 Şəfa Market</div><p>Bakının ən güvenilir marketi. Hər gün təzə, hər zaman keyfiyyətli.</p></div>
-    <div class="ft-col"><h4>Keçidlər</h4><ul><li><a href="#about">Haqqımızda</a></li><li><a href="#products">Məhsullar</a></li><li><a href="#hours">İş saatları</a></li><li><a href="#contact">Əlaqə</a></li></ul></div>
-    <div class="ft-col"><h4>Əlaqə</h4><ul><li><a href="#">📞 +994 50 XXX XX XX</a></li><li><a href="#">📱 WhatsApp</a></li><li><a href="#">📧 info@sefamarket.az</a></li><li><a href="https://maps.app.goo.gl/78HuTW4zDDb5vvz39" target="_blank">📍 Xəritədə gör</a></li></ul></div>
+.ft-brand"><div class="bn">🌿 Şəfa Market</div><p>Bakının ən güvenilir marketi. Hər gün təzə, hər zaman keyfiyyətli.</p></div>
+.ft-col {<h4>Keçidlər</h4><ul><li><a href="#about">Haqqımızda</a></li><li><a href="#products">Məhsullar</a></li><li><a href="#hours">İş saatları</a></li><li><a href="#contact">Əlaqə</a></li></ul></div>
+.ft-col {<h4>Əlaqə</h4><ul><li><a href="#">📞 +994 50 XXX XX XX</a></li><li><a href="#">📱 WhatsApp</a></li><li><a href="#">📧 info@sefamarket.az</a></li><li><a href="https://maps.app.goo.gl/78HuTW4zDDb5vvz39" target="_blank">📍 Xəritədə gör</a></li></ul></div>
   </div>
   <div class="ft-bot"><span>© 2024 Şəfa Market. Bütün hüquqlar qorunur.</span><span>❤️ Bakıda hazırlanmışdır</span></div>
 </footer>
@@ -587,46 +361,29 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
 <div class="toast" id="toast"></div>
 
 <script>
-// ========= SUPABASE KONFİQURASİYASI =========
-const SUPABASE_URL = "https://wbtfbtubivskzshlyfsh.supabase.co";
-const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndidGZidHViaXZza3pzaGx5ZnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkzMTczOTYsImV4cCI6MjA2NDg5MzM5Nn0.S0o0S0h0SWhfS083WlpVNVJMR3g0NlJZVkUxS0FpaXUwVTAtM3pZUGhaOA";
-
-const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
-
 // ========= STATE =========
-let products = [];
+let products = JSON.parse(localStorage.getItem('sm_products') || 'null') || [
+  {id:1,name:'Alma (1 kq)',cat:'Meyvə',price:2.50,emoji:'🍎',img:'',stock:120,unit:'kq'},
+  {id:2,name:'Süd (1 litr)',cat:'Süd məhsulları',price:1.80,emoji:'🥛',img:'',stock:80,unit:'litr'},
+  {id:3,name:'Ağ Çörək',cat:'Çörək',price:0.60,emoji:'🍞',img:'',stock:200,unit:'ədəd'},
+  {id:4,name:'Pendir (500 q)',cat:'Süd məhsulları',price:4.20,emoji:'🧀',img:'',stock:45,unit:'q'},
+  {id:5,name:'Pomidor (1 kq)',cat:'Tərəvəz',price:1.50,emoji:'🍅',img:'',stock:95,unit:'kq'},
+  {id:6,name:'Yumurta (10 ədəd)',cat:'Kənd məhsulları',price:2.80,emoji:'🥚',img:'',stock:60,unit:'ədəd'},
+  {id:7,name:'Ayçiçək yağı (1 L)',cat:'Yağlar',price:3.90,emoji:'🛢️',img:'',stock:40,unit:'litr'},
+  {id:8,name:'Çay (100 q)',cat:'İçkilər',price:2.20,emoji:'☕',img:'',stock:70,unit:'q'}
+];
 let orders = JSON.parse(localStorage.getItem('sm_orders') || '[]');
+let nextId = Math.max(0,...products.map(p=>p.id))+1;
+let nextOrdId = orders.length + 1;
 let cart = [];
 let editId = null;
 let activeFilter = '';
 let searchQ = '';
 let sortMode = '';
 let payMode = 'naghd';
-let nextOrdId = orders.length + 1;
 
+function saveLS(){localStorage.setItem('sm_products', JSON.stringify(products));}
 function saveOrders(){localStorage.setItem('sm_orders', JSON.stringify(orders));}
-
-// ========= SUPABASE-DƏN MƏLUMATLARI OXUMAQ =========
-async function fetchProducts() {
-  try {
-    const { data, error } = await supabase
-      .from('products')
-      .select('*')
-      .order('id', { ascending: true });
-
-    if (error) throw error;
-    products = data || [];
-    renderPublic();
-    if (document.getElementById('adminPage').classList.contains('open')) {
-      renderAdmTable();
-      updateAdmStats();
-      renderStatsPanel();
-    }
-  } catch (err) {
-    console.error('Məhsulları yükləyərkən xəta:', err.message);
-    toast('❌ Məhsullar bazadan yüklənmədi!', true);
-  }
-}
 
 // ========= SECRET ADMIN URL =========
 let keyBuf = '';
@@ -708,7 +465,7 @@ function renderGrid(){
         <div class="pc-cat">${p.cat}</div>
         <div class="pc-name">${p.name}</div>
         <div class="pc-bot">
-          <div class="pc-price">${Number(p.price).toFixed(2)} ₼</div>
+          <div class="pc-price">${p.price.toFixed(2)} ₼</div>
           ${p.stock>0
             ? `<button class="btn-cart" onclick="addToCart(${p.id})">+ Səbət</button>`
             : `<span class="out-stock">Stok yoxdur</span>`}
@@ -834,8 +591,7 @@ function placeOrder(){
   renderOrders();
 }
 
-// ========= ADMIN SUPABASE (SAVE / UPDATE / DELETE) =========
-toggleAF();
+// ========= ADMIN TABLE =========
 function toggleAF(){
   editId=null; clearAF();
   document.getElementById('afTitle').textContent='➕ Yeni Məhsul Əlavə Et';
@@ -843,8 +599,7 @@ function toggleAF(){
 }
 function cancelAF(){ document.getElementById('admForm').classList.remove('open'); editId=null; clearAF(); }
 function clearAF(){ ['afName','afPrice','afImg','afEmoji','afStock','afUnit'].forEach(i=>document.getElementById(i).value=''); document.getElementById('afCat').value=''; }
-
-async function saveProduct(){
+function saveProduct(){
   const name=document.getElementById('afName').value.trim();
   const cat=document.getElementById('afCat').value;
   const price=parseFloat(document.getElementById('afPrice').value);
@@ -852,41 +607,20 @@ async function saveProduct(){
   const emoji=document.getElementById('afEmoji').value.trim()||'📦';
   const stock=parseInt(document.getElementById('afStock').value)||0;
   const unit=document.getElementById('afUnit').value.trim()||'ədəd';
-  
   if(!name){ toast('❌ Məhsul adı daxil edin!',true); return; }
   if(!cat){ toast('❌ Kateqoriya seçin!',true); return; }
   if(isNaN(price)||price<0){ toast('❌ Düzgün qiymət daxil edin!',true); return; }
-  
-  const productData = { name, cat, price, img, emoji, stock, unit };
-
-  try {
-    if(editId!==null){
-      // Supabase Update
-      const { error } = await supabase
-        .from('products')
-        .update(productData)
-        .eq('id', editId);
-        
-      if (error) throw error;
-      toast('✅ Məhsul yeniləndi!');
-      editId=null;
-    } else {
-      // Supabase Insert
-      const { error } = await supabase
-        .from('products')
-        .insert([productData]);
-        
-      if (error) throw error;
-      toast('✅ Məhsul əlavə edildi!');
-    }
-    cancelAF();
-    await fetchProducts(); // Cədvəlləri yenidən çək və render elə
-  } catch (err) {
-    console.error('Yadda saxlayarkən xəta:', err.message);
-    toast('❌ Xəta baş verdi: ' + err.message, true);
+  if(editId!==null){
+    const idx=products.findIndex(p=>p.id===editId);
+    if(idx!==-1) products[idx]={id:editId,name,cat,price,img,emoji,stock,unit};
+    toast('✅ Məhsul yeniləndi!');
+    editId=null;
+  } else {
+    products.push({id:nextId++,name,cat,price,img,emoji,stock,unit});
+    toast('✅ Məhsul əlavə edildi!');
   }
+  saveLS(); cancelAF(); renderAdmTable(); updateAdmStats(); renderPublic();
 }
-
 function editProduct(id){
   const p=products.find(x=>x.id===id); if(!p) return;
   editId=id;
@@ -901,24 +635,11 @@ function editProduct(id){
   document.getElementById('admForm').classList.add('open');
   document.getElementById('admForm').scrollIntoView({behavior:'smooth'});
 }
-
-async function delProduct(id){
+function delProduct(id){
   if(!confirm('Bu məhsulu silmək istədiyinizə əminsiniz?')) return;
-  try {
-    const { error } = await supabase
-      .from('products')
-      .delete()
-      .eq('id', id);
-      
-    if (error) throw error;
-    toast('🗑️ Silindi');
-    await fetchProducts();
-  } catch (err) {
-    console.error('Silərkən xəta:', err.message);
-    toast('❌ Silmək mümkün olmadı!', true);
-  }
+  products=products.filter(p=>p.id!==id);
+  saveLS(); renderAdmTable(); updateAdmStats(); renderPublic(); toast('🗑️ Silindi');
 }
-
 function renderAdmTable(){
   const s=document.getElementById('afSearch').value.toLowerCase();
   const c=document.getElementById('afCatF').value;
@@ -929,12 +650,11 @@ function renderAdmTable(){
     <td>${p.img?`<img class="td-img-prev" src="${p.img}" onerror="this.outerHTML='<span class=td-em>${p.emoji||'📦'}</span>'">` :`<span class="td-em">${p.emoji||'📦'}</span>`}</td>
     <td class="td-nm">${p.name}</td>
     <td><span class="td-cat-badge">${p.cat}</span></td>
-    <td class="td-price">${Number(p.price).toFixed(2)} ₼</td>
+    <td class="td-price">${p.price.toFixed(2)} ₼</td>
     <td style="color:var(--gray);font-size:13px">${p.stock} ${p.unit||'ədəd'}</td>
     <td><button class="btn-ed" onclick="editProduct(${p.id})">✏️ Düzəlt</button><button class="btn-dl" onclick="delProduct(${p.id})">🗑️ Sil</button></td>
   </tr>`).join('');
 }
-
 function updateAdmStats(){
   document.getElementById('aStatProd').textContent=products.length;
   document.getElementById('aStatCat').textContent=[...new Set(products.map(p=>p.cat))].length;
@@ -969,7 +689,7 @@ function markDone(no){
 // ========= STATS PANEL =========
 function renderStatsPanel(){
   const cats={};
-  products.forEach(p=>{ if(!cats[p.cat]) cats[p.cat]={count:0,totalPrice:0}; cats[p.cat].count++; cats[p.cat].totalPrice+=Number(p.price); });
+  products.forEach(p=>{ if(!cats[p.cat]) cats[p.cat]={count:0,totalPrice:0}; cats[p.cat].count++; cats[p.cat].totalPrice+=p.price; });
   document.getElementById('statsContainer').innerHTML=`
     <h3 style="font-size:17px;font-weight:800;margin-bottom:18px">Kateqoriya üzrə məhsullar</h3>
     ${Object.entries(cats).map(([c,d])=>`
@@ -1003,8 +723,8 @@ function toast(msg,err){
   t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800);
 }
 
-// ========= INITIALIZATION (BAŞLANĞIC) =========
-fetchProducts(); // Sayt açılanda birbaşa buluddan məhsulları gətirir
+// ========= INIT =========
+renderPublic();
 </script>
 </body>
 </html>
