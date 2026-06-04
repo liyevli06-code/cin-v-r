@@ -5,6 +5,7 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Şəfa Market</title>
 <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700;900&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
 <style>
 :root{--green:#1a5c3a;--gl:#2d8a58;--gp:#e8f5ee;--gold:#c9973a;--cream:#fdf8f0;--dark:#1a1a1a;--gray:#6b7280;--w:#fff;--r:14px;--sh:0 4px 24px rgba(26,92,58,0.10);}
 *{margin:0;padding:0;box-sizing:border-box;}
@@ -106,6 +107,7 @@ header{position:sticky;top:0;z-index:200;background:var(--w);border-bottom:1px s
 .ci-qty{display:flex;align-items:center;gap:8px;margin-top:6px;}
 .qty-btn{width:26px;height:26px;border-radius:6px;border:1.5px solid #ddd;background:none;font-size:16px;font-weight:700;display:flex;align-items:center;justify-content:center;transition:border-color .2s;}
 .qty-btn:hover{border-color:var(--green);color:var(--green);}
+.qty-val覆{font-size:14px;font-weight:700;min-width:20px;text-align:center;}
 .qty-val{font-size:14px;font-weight:700;min-width:20px;text-align:center;}
 .ci-del{background:none;border:none;color:#ddd;font-size:18px;transition:color .2s;}
 .ci-del:hover{color:#dc2626;}
@@ -149,6 +151,7 @@ header{position:sticky;top:0;z-index:200;background:var(--w);border-bottom:1px s
 .pay-opt:hover{border-color:var(--green);}
 .pay-opt.selected{border-color:var(--green);background:var(--gp);}
 .pay-opt .po-ic{font-size:28px;margin-bottom:6px;}
+.pay-opt .po-lb覆{font-size:13px;font-weight:700;}
 .pay-opt .po-lb{font-size:13px;font-weight:700;}
 .pay-opt .po-sub{font-size:11px;color:var(--gray);margin-top:2px;}
 .order-sum{background:#f8f9fa;border-radius:12px;padding:16px;margin-bottom:20px;}
@@ -181,6 +184,7 @@ header{position:sticky;top:0;z-index:200;background:var(--w);border-bottom:1px s
 .ci-card{display:flex;align-items:flex-start;gap:14px;background:var(--cream);border-radius:12px;padding:16px 18px;border:1px solid #e8e8e8;}
 .ci-card-ic{width:40px;height:40px;background:var(--green);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:18px;flex-shrink:0;}
 .ci-card-lb{font-size:11px;color:var(--gray);font-weight:600;text-transform:uppercase;letter-spacing:.05em;}
+.ci-card-vl覆{font-size:15px;font-weight:700;margin-top:2px;}
 .ci-card-vl{font-size:15px;font-weight:700;margin-top:2px;}
 .map-wrap{border-radius:18px;overflow:hidden;border:1px solid #e0e0e0;box-shadow:var(--sh);}
 .map-wrap iframe{width:100%;height:360px;border:none;display:block;}
@@ -318,7 +322,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
   </div>
 </header>
 
-<!-- HERO -->
 <section class="hero">
   <div class="hero-in">
     <div>
@@ -339,7 +342,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
   </div>
 </section>
 
-<!-- CATEGORIES -->
 <section class="sec" id="about">
   <div class="sec-in">
     <div class="sec-hd">
@@ -350,7 +352,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
   </div>
 </section>
 
-<!-- PRODUCTS -->
 <section class="sec prod-sec" id="products">
   <div class="sec-in">
     <div class="prod-topbar">
@@ -366,7 +367,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
   </div>
 </section>
 
-<!-- FEATURES -->
 <section class="sec">
   <div class="sec-in">
     <div class="sec-hd">
@@ -384,7 +384,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
   </div>
 </section>
 
-<!-- HOURS -->
 <section class="sec hours-sec" id="hours">
   <div class="sec-in">
     <h2>📅 İş Saatlarımız</h2>
@@ -400,7 +399,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
   </div>
 </section>
 
-<!-- CONTACT -->
 <section class="sec contact-sec" id="contact">
   <div class="sec-in">
     <div class="contact-grid">
@@ -434,7 +432,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
   <div class="ft-bot"><span>© 2024 Şəfa Market. Bütün hüquqlar qorunur.</span><span>❤️ Bakıda hazırlanmışdır</span></div>
 </footer>
 
-<!-- CART SIDEBAR -->
 <div class="cart-overlay" id="cartOverlay" onclick="closeCart()"></div>
 <div class="cart-sidebar" id="cartSidebar">
   <div class="cart-head">
@@ -450,7 +447,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
   </div>
 </div>
 
-<!-- CHECKOUT MODAL -->
 <div class="modal-bg" id="checkoutModal">
   <div class="modal">
     <div class="modal-head">
@@ -463,7 +459,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
         <div class="step" id="step2"><div class="step-dot">2</div><div class="step-label">Ödəniş</div></div>
         <div class="step" id="step3"><div class="step-dot">3</div><div class="step-label">Təsdiq</div></div>
       </div>
-      <!-- STEP 1 -->
       <div class="form-sec active" id="fs1">
         <div class="fg"><label>Ad Soyad *</label><input type="text" id="chkName" placeholder="Adınız və soyadınız"></div>
         <div class="fg-row">
@@ -474,7 +469,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
         <div class="fg"><label>Qeyd</label><textarea id="chkNote" placeholder="Əlavə qeydlər..."></textarea></div>
         <button class="btn-next" onclick="goStep(2)">Davam et →</button>
       </div>
-      <!-- STEP 2 -->
       <div class="form-sec" id="fs2">
         <p style="font-weight:700;margin-bottom:14px;">Ödəniş üsulu seçin:</p>
         <div class="pay-opts">
@@ -493,7 +487,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
         <button class="btn-next" onclick="goStep(3)">Sifarişi Ver →</button>
         <button class="btn-back-step" onclick="goStep(1)">← Geri</button>
       </div>
-      <!-- STEP 3 SUCCESS -->
       <div class="form-sec" id="fs3">
         <div class="success-wrap">
           <div class="success-ic">✅</div>
@@ -507,7 +500,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
   </div>
 </div>
 
-<!-- ADMIN -->
 <div id="adminPage">
   <div class="adm-hd">
     <div class="adm-logo">🌿 Şəfa <span>Admin</span></div>
@@ -529,7 +521,6 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
       <div class="ast"><div class="ast-lb">Ümumi Satış</div><div class="ast-vl" id="aStatRev">0 ₼</div><div class="ast-sub">bu gün</div></div>
     </div>
 
-    <!-- PRODUCTS PANEL -->
     <div class="adm-panel on" id="panelProducts">
       <div class="panel-top">
         <h2>📦 Məhsul İdarəetməsi</h2>
@@ -581,13 +572,11 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
       </div>
     </div>
 
-    <!-- ORDERS PANEL -->
     <div class="adm-panel" id="panelOrders">
       <div class="panel-top"><h2>📋 Sifarişlər</h2></div>
       <div id="ordersContainer"><p style="color:var(--gray);text-align:center;padding:40px;">Hələ sifariş yoxdur</p></div>
     </div>
 
-    <!-- STATS PANEL -->
     <div class="adm-panel" id="panelStats">
       <div class="panel-top"><h2>📊 Statistika</h2></div>
       <div id="statsContainer" style="background:var(--w);border-radius:14px;border:1px solid #e8e8e8;padding:24px;"></div>
@@ -598,29 +587,46 @@ footer{background:var(--dark);color:rgba(255,255,255,.7);padding:48px 24px 24px;
 <div class="toast" id="toast"></div>
 
 <script>
+// ========= SUPABASE KONFİQURASİYASI =========
+const SUPABASE_URL = "https://wbtfbtubivskzshlyfsh.supabase.co";
+const SUPABASE_ANON_KEY = "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6IndidGZidHViaXZza3pzaGx5ZnNoIiwicm9sZSI6ImFub24iLCJpYXQiOjE3NDkzMTczOTYsImV4cCI6MjA2NDg5MzM5Nn0.S0o0S0h0SWhfS083WlpVNVJMR3g0NlJZVkUxS0FpaXUwVTAtM3pZUGhaOA";
+
+const supabase = window.supabase.createClient(SUPABASE_URL, SUPABASE_ANON_KEY);
+
 // ========= STATE =========
-let products = JSON.parse(localStorage.getItem('sm_products') || 'null') || [
-  {id:1,name:'Alma (1 kq)',cat:'Meyvə',price:2.50,emoji:'🍎',img:'',stock:120,unit:'kq'},
-  {id:2,name:'Süd (1 litr)',cat:'Süd məhsulları',price:1.80,emoji:'🥛',img:'',stock:80,unit:'litr'},
-  {id:3,name:'Ağ Çörək',cat:'Çörək',price:0.60,emoji:'🍞',img:'',stock:200,unit:'ədəd'},
-  {id:4,name:'Pendir (500 q)',cat:'Süd məhsulları',price:4.20,emoji:'🧀',img:'',stock:45,unit:'q'},
-  {id:5,name:'Pomidor (1 kq)',cat:'Tərəvəz',price:1.50,emoji:'🍅',img:'',stock:95,unit:'kq'},
-  {id:6,name:'Yumurta (10 ədəd)',cat:'Kənd məhsulları',price:2.80,emoji:'🥚',img:'',stock:60,unit:'ədəd'},
-  {id:7,name:'Ayçiçək yağı (1 L)',cat:'Yağlar',price:3.90,emoji:'🛢️',img:'',stock:40,unit:'litr'},
-  {id:8,name:'Çay (100 q)',cat:'İçkilər',price:2.20,emoji:'☕',img:'',stock:70,unit:'q'}
-];
+let products = [];
 let orders = JSON.parse(localStorage.getItem('sm_orders') || '[]');
-let nextId = Math.max(0,...products.map(p=>p.id))+1;
-let nextOrdId = orders.length + 1;
 let cart = [];
 let editId = null;
 let activeFilter = '';
 let searchQ = '';
 let sortMode = '';
 let payMode = 'naghd';
+let nextOrdId = orders.length + 1;
 
-function saveLS(){localStorage.setItem('sm_products', JSON.stringify(products));}
 function saveOrders(){localStorage.setItem('sm_orders', JSON.stringify(orders));}
+
+// ========= SUPABASE-DƏN MƏLUMATLARI OXUMAQ =========
+async function fetchProducts() {
+  try {
+    const { data, error } = await supabase
+      .from('products')
+      .select('*')
+      .order('id', { ascending: true });
+
+    if (error) throw error;
+    products = data || [];
+    renderPublic();
+    if (document.getElementById('adminPage').classList.contains('open')) {
+      renderAdmTable();
+      updateAdmStats();
+      renderStatsPanel();
+    }
+  } catch (err) {
+    console.error('Məhsulları yükləyərkən xəta:', err.message);
+    toast('❌ Məhsullar bazadan yüklənmədi!', true);
+  }
+}
 
 // ========= SECRET ADMIN URL =========
 let keyBuf = '';
@@ -702,7 +708,7 @@ function renderGrid(){
         <div class="pc-cat">${p.cat}</div>
         <div class="pc-name">${p.name}</div>
         <div class="pc-bot">
-          <div class="pc-price">${p.price.toFixed(2)} ₼</div>
+          <div class="pc-price">${Number(p.price).toFixed(2)} ₼</div>
           ${p.stock>0
             ? `<button class="btn-cart" onclick="addToCart(${p.id})">+ Səbət</button>`
             : `<span class="out-stock">Stok yoxdur</span>`}
@@ -828,7 +834,8 @@ function placeOrder(){
   renderOrders();
 }
 
-// ========= ADMIN TABLE =========
+// ========= ADMIN SUPABASE (SAVE / UPDATE / DELETE) =========
+toggleAF();
 function toggleAF(){
   editId=null; clearAF();
   document.getElementById('afTitle').textContent='➕ Yeni Məhsul Əlavə Et';
@@ -836,7 +843,8 @@ function toggleAF(){
 }
 function cancelAF(){ document.getElementById('admForm').classList.remove('open'); editId=null; clearAF(); }
 function clearAF(){ ['afName','afPrice','afImg','afEmoji','afStock','afUnit'].forEach(i=>document.getElementById(i).value=''); document.getElementById('afCat').value=''; }
-function saveProduct(){
+
+async function saveProduct(){
   const name=document.getElementById('afName').value.trim();
   const cat=document.getElementById('afCat').value;
   const price=parseFloat(document.getElementById('afPrice').value);
@@ -844,20 +852,41 @@ function saveProduct(){
   const emoji=document.getElementById('afEmoji').value.trim()||'📦';
   const stock=parseInt(document.getElementById('afStock').value)||0;
   const unit=document.getElementById('afUnit').value.trim()||'ədəd';
+  
   if(!name){ toast('❌ Məhsul adı daxil edin!',true); return; }
   if(!cat){ toast('❌ Kateqoriya seçin!',true); return; }
   if(isNaN(price)||price<0){ toast('❌ Düzgün qiymət daxil edin!',true); return; }
-  if(editId!==null){
-    const idx=products.findIndex(p=>p.id===editId);
-    if(idx!==-1) products[idx]={id:editId,name,cat,price,img,emoji,stock,unit};
-    toast('✅ Məhsul yeniləndi!');
-    editId=null;
-  } else {
-    products.push({id:nextId++,name,cat,price,img,emoji,stock,unit});
-    toast('✅ Məhsul əlavə edildi!');
+  
+  const productData = { name, cat, price, img, emoji, stock, unit };
+
+  try {
+    if(editId!==null){
+      // Supabase Update
+      const { error } = await supabase
+        .from('products')
+        .update(productData)
+        .eq('id', editId);
+        
+      if (error) throw error;
+      toast('✅ Məhsul yeniləndi!');
+      editId=null;
+    } else {
+      // Supabase Insert
+      const { error } = await supabase
+        .from('products')
+        .insert([productData]);
+        
+      if (error) throw error;
+      toast('✅ Məhsul əlavə edildi!');
+    }
+    cancelAF();
+    await fetchProducts(); // Cədvəlləri yenidən çək və render elə
+  } catch (err) {
+    console.error('Yadda saxlayarkən xəta:', err.message);
+    toast('❌ Xəta baş verdi: ' + err.message, true);
   }
-  saveLS(); cancelAF(); renderAdmTable(); updateAdmStats(); renderPublic();
 }
+
 function editProduct(id){
   const p=products.find(x=>x.id===id); if(!p) return;
   editId=id;
@@ -872,11 +901,24 @@ function editProduct(id){
   document.getElementById('admForm').classList.add('open');
   document.getElementById('admForm').scrollIntoView({behavior:'smooth'});
 }
-function delProduct(id){
+
+async function delProduct(id){
   if(!confirm('Bu məhsulu silmək istədiyinizə əminsiniz?')) return;
-  products=products.filter(p=>p.id!==id);
-  saveLS(); renderAdmTable(); updateAdmStats(); renderPublic(); toast('🗑️ Silindi');
+  try {
+    const { error } = await supabase
+      .from('products')
+      .delete()
+      .eq('id', id);
+      
+    if (error) throw error;
+    toast('🗑️ Silindi');
+    await fetchProducts();
+  } catch (err) {
+    console.error('Silərkən xəta:', err.message);
+    toast('❌ Silmək mümkün olmadı!', true);
+  }
 }
+
 function renderAdmTable(){
   const s=document.getElementById('afSearch').value.toLowerCase();
   const c=document.getElementById('afCatF').value;
@@ -887,11 +929,12 @@ function renderAdmTable(){
     <td>${p.img?`<img class="td-img-prev" src="${p.img}" onerror="this.outerHTML='<span class=td-em>${p.emoji||'📦'}</span>'">` :`<span class="td-em">${p.emoji||'📦'}</span>`}</td>
     <td class="td-nm">${p.name}</td>
     <td><span class="td-cat-badge">${p.cat}</span></td>
-    <td class="td-price">${p.price.toFixed(2)} ₼</td>
+    <td class="td-price">${Number(p.price).toFixed(2)} ₼</td>
     <td style="color:var(--gray);font-size:13px">${p.stock} ${p.unit||'ədəd'}</td>
     <td><button class="btn-ed" onclick="editProduct(${p.id})">✏️ Düzəlt</button><button class="btn-dl" onclick="delProduct(${p.id})">🗑️ Sil</button></td>
   </tr>`).join('');
 }
+
 function updateAdmStats(){
   document.getElementById('aStatProd').textContent=products.length;
   document.getElementById('aStatCat').textContent=[...new Set(products.map(p=>p.cat))].length;
@@ -913,7 +956,7 @@ function renderOrders(){
           ${o.status!=='done'?`<button class="btn-ord-done" onclick="markDone('${o.no}')">Tamamla</button>`:''}
         </div>
       </div>
-      <div class="ord-meta">📞 ${o.phone} &nbsp;|&nbsp; 💳 ${o.pay==='kart'?'Kart':'Nağd'} &nbsp;|&nbsp; 🕐 ${o.date}</div>
+      <div class="ord-meta">📞 ${o.phone}  |  💳 ${o.pay==='kart'?'Kart':'Nağd'}  |  🕐 ${o.date}</div>
       <div class="ord-items">${o.items.map(i=>`${i.name} × ${i.qty} = ${(i.price*i.qty).toFixed(2)} ₼`).join(' • ')}</div>
       ${o.note?`<div style="font-size:13px;color:var(--gray);margin-top:6px">📝 ${o.note}</div>`:''}
       <div class="ord-total">Cəmi: ${o.total.toFixed(2)} ₼</div>
@@ -926,7 +969,7 @@ function markDone(no){
 // ========= STATS PANEL =========
 function renderStatsPanel(){
   const cats={};
-  products.forEach(p=>{ if(!cats[p.cat]) cats[p.cat]={count:0,totalPrice:0}; cats[p.cat].count++; cats[p.cat].totalPrice+=p.price; });
+  products.forEach(p=>{ if(!cats[p.cat]) cats[p.cat]={count:0,totalPrice:0}; cats[p.cat].count++; cats[p.cat].totalPrice+=Number(p.price); });
   document.getElementById('statsContainer').innerHTML=`
     <h3 style="font-size:17px;font-weight:800;margin-bottom:18px">Kateqoriya üzrə məhsullar</h3>
     ${Object.entries(cats).map(([c,d])=>`
@@ -960,8 +1003,8 @@ function toast(msg,err){
   t.classList.add('show'); setTimeout(()=>t.classList.remove('show'),2800);
 }
 
-// ========= INIT =========
-renderPublic();
+// ========= INITIALIZATION (BAŞLANĞIC) =========
+fetchProducts(); // Sayt açılanda birbaşa buluddan məhsulları gətirir
 </script>
 </body>
 </html>
